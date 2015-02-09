@@ -12,26 +12,26 @@ public class Root {
         Scanner scan = new Scanner (System.in); 
         
         //Prompt user to enter a double
-        System.out.println("Enter a double, and I print its " +
+        System.out.print("Enter a double, and I print its " +
             "cube root: ");
             double number = scan.nextDouble();
         
         //make a guess    
         double guess = number / 3;
         //improve guess first time
-        guess = (guess * guess * guess + number) / 
+        guess = (2 * guess * guess * guess + number) / 
             (3 * guess * guess);
         //improve guess second time
-        guess = (guess * guess * guess + number) / 
+        guess = (2* guess * guess * guess + number) / 
             (3 * guess * guess);
         //improve guess third time
-        guess = (guess * guess * guess + number) / 
+        guess = (2* guess * guess * guess + number) / 
             (3 * guess * guess);
         //improve guess fourth time
-        guess = (guess * guess * guess + number) / 
+        guess = (2 * guess * guess * guess + number) / 
             (3 * guess * guess);
         //improve guess fifth time
-        guess = (guess * guess * guess + number) / 
+        guess = (2 * guess * guess * guess + number) / 
             (3 * guess * guess);
             
         //print guess

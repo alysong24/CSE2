@@ -12,11 +12,11 @@ public class Bicycle {
         Scanner scan = new Scanner (System.in);
         
         //Prompt user to enter # of seconds
-        System.out.println("Enter the number of seconds: ");
+        System.out.print("Enter the number of seconds: ");
             int seconds = scan.nextInt();
         
         //Prompt user to enter # of counts
-        System.out.println("Enter the number of counts: ");
+        System.out.print("Enter the number of counts: ");
             int counts = scan.nextInt();
             
         double wheelDiameter = 27.0;  //sets wheel diameter
@@ -30,18 +30,32 @@ public class Bicycle {
 	    double totalDistance = counts * wheelDiameter * PI;
 	    //convert distance to miles
 	    totalDistance = totalDistance / inchesPerFoot / feetPerMile;
+	    //change distance to correct format
+	    int totalDistanceInt = (int) totalDistance;
+	    int dist1 = (int) (totalDistance * 10) % 10;
+	    int dist2 = (int) (totalDistance * 100) % 10;
 	    
+	   
 	    //calculate total time
 	    double totalTime = seconds / secondsPerMinute;
 	    
 	    //calculate mph
 	    double timeHours = totalTime / minutesPerHour;
 	    double avgMph = totalDistance / timeHours; 
-        
+	    //change total distance to correct format
+	    int avgMphInt = (int) avgMph;
+	    int mph1 = (int) (avgMph * 10) % 10;
+	    int mph2 = (int) (avgMph * 100) % 10;
+	    
         //print results
-        System.out.println("The distance was " + totalDistance +
-            " miles and took " + totalTime + " minutes.");
-        System.out.println("The average mph was " + avgMph );
+        System.out.print("The distance was " + totalDistanceInt);
+        System.out.print("." + dist1);
+        System.out.print(dist2);
+        System.out.print(" miles and took " + totalTime + 
+            " minutes.");
+        System.out.print("The average mph was " + avgMphInt + "." );
+        System.out.print(mph1);
+        System.out.print(mph2 + "\n");
         
         
     } //end main method
