@@ -2,6 +2,9 @@
 //Homework 3
 //Problem 3
 
+/* This program prompts the user to enter a double 
+and then prints the 4 digits after the decimal */
+
 import java.util.Scanner; //import scanner
 
 public class FourDigits {

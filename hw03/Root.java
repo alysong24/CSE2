@@ -2,6 +2,9 @@
 //Homework 3
 //Problem 2
 
+/* This program estimates the cube root of a number entered
+by the user */
+
 import java.util.Scanner; //import scanner
 
 public class Root {

@@ -2,6 +2,9 @@
 //Homework 3
 //Problem 1
 
+/* This program calulates the total distance, time, and average
+mph of a bicycle from data entered by the user */
+
 import java.util.Scanner; //import scanner
 
 public class Bicycle {
