@@ -1,90 +1,126 @@
 //Alyson Givre
-//Lab 4
-//February 13, 2015
+//Lab 04
 
-/* This program tells the user how many cookies they should buy for
-an event*/
+/* This program takes input from the user to determine if they have bought
+enogh cookies */
+
 
 import java.util.Scanner; //import scanner
 
+
 public class Cookies {
     
-    public static void main(String[] args) {
+    public static void main (String [] args) {
         
-        //construct and declare scanner
+        //declare and construct scanner
         Scanner myScanner = new Scanner(System.in);
         
-        //prompt user to enter # of people
+        //prompt user to enter the number of people
         System.out.print("Enter the number of people: ");
         
-        //if user enters an integer...
+        //check if # of people is an integer
         if (myScanner.hasNextInt()) {
-            //saves number of people
             int nPeople = myScanner.nextInt();
             
-            //check if number is greater than 0
+            //check if # of people is greater than 0
             if (nPeople > 0) {
+                
                 //ask for number of cookies
                 System.out.print("Enter the number of cookies you" +
                 " are planning to buy: ");
-                //save number of cookies bought
-                int nCookies = myScanner.nextInt();
                 
-                //check if number is greater than 0
-                if (nCookies > 0) {
-                    System.out.print("How many do you want each" +
-                    " person to get? ");
-                    int nEach = myScanner.nextInt();
-                    
-                    //check if even number for everyone
-                    //if even amount for everyone
-                    if ( ( nCookies - (nEach * nPeople) ) == nEach ) {
-                        //print that there's enough
-                        System.out.println("You have enough cookies" +
-                        " for each person and the amount will divide" +
-                        " evenly.");
+                //check if # of cookies is an int    
+                if(myScanner.hasNextInt()) {
+                    int nCookies = myScanner.nextInt();
+                    //check if # is greater than 0
+                    if (nCookies > 0) {
+                        
+                        //ask for # each
+                        System.out.print("How many do you want each" +
+                        " person to get? ");
+                            int nEach = myScanner.nextInt();
+                            
+                        //check if number is positive
+                        if (nEach >= 0) {
+                            
+                            //divide evenly case
+                            if (  ( (nCookies - (nEach * nPeople)) == nPeople ) 
+                            || nEach == 0 ) {
+                                //print that they will divide evenly
+                                System.out.println("You have enough cookies " +
+                                "for each person and the amount will divide" +
+                                " evenly.");
+                            }
+                            
+                            //not divide evenly case
+                            else if ( (nCookies - (nEach * nPeople)) != nPeople 
+                            & nCookies > (nPeople * nEach)) {
+                                //print that they won't divide evenly
+                                System.out.println("You have enough, but they" +
+                                " will not divide evenly.");
+                            }
+                            
+                            //not enough case
+                            else {
+                                //calculate how many more needed
+                                int nMore = (nEach * nPeople) - nCookies;
+                                //print how many more
+                                System.out.println("You will not have enough " +
+                                "cookies. You need to but at least " + nMore +
+                                " more.");
+                            }
+                            
+                        }
+                        
+                        //if not positive
+                        else {
+                            //print that # was not > 0
+                            System.out.println("You did not enter an " +
+                            "int > 0.");
+                            //terminate program
+                            return;
+                        }
+                        
                     }
                     
-                    //if not even amount for everyone
-                    else if ( ( nCookies - (nEach * nPeople) ) != nEach) {
-                        //print that amount will not divide evenly
-                        System.out.println("You will have enough, but" +
-                        " they will not divide evenly.");
-                    }
-
+                    //if not greater than 0
                     else {
-                        //print that there will be not be enough and how
-                        //many more are needed
-                        int nMore = (nEach * nPeople) - nCookies;
-                        System.out.println("You will not have enough " +
-                        "cookies. You need to buy at least " + nMore +
-                        " more.");
+                        //print that # is not greater than 0
+                        System.out.println("You did not enter an int" +
+                        " > 0.");
+                        //terminate program
+                        return;
                     }
-                    
                 }
-                
-                //number is not greater than 0
+                    
+                //if # of cookies is not an int
                 else {
-                    System.out.println("You did not enter an int"
-                     +" > 0");
-                     return; //terminate program
+                    //print that # is not an int
+                    System.out.println("You did not enter an int");
+                    //terminate program
+                    return;
                 }
                 
             }
             
-            //number is not greater than 0
+            //if # of people is not greater than 0
             else {
-                System.out.println("You did not enter an int > 0");
-                return; //terminate program
+                System.out.println("You did not enter an int > 0.");
+                //terminate program
+                return;
             }
+            
             
         }
         
+        //if # of people is not an integer
         else {
-            //print that user did not enter an int
+            //print that # is not an integer
             System.out.println("You did not enter an int.");
-            return; //terminate program
+            //terminate program
+            return;
         }
+        
         
     } //end main method
     
