@@ -68,22 +68,25 @@ public class SmileGenerator {
         System.out.println("Step 4");
         //generate random number between 0 and 30
         int number2  = (int) (Math.random() * 30);
-        //initialize counter variable
-        int counter3 = 1;
+        //initialize counter variables
+        int counter3 = 2;
+        int i = 1;
         
-        for(int i = 1; i <= number2; i++) {
-            for(int j = 1; j <= i; j++ ) {
-                //print smiley
-                System.out.print(":) ");
-                //check if j equals 1
-                if (j == i) {
-                    //print line break
-                    System.out.print("\n");
-                }
+        //loop to print between 1 and number2 smileys
+        while(i >= 0 & i <= number2) {
+            //print smiley
+            System.out.print(":) ");
+            //decrease i by one
+            i--;
+            if(i == 0) {
+               //print line break
+               System.out.println();
+               //add counter3 value to i
+               i += counter3;
+               //increase counter3 value by one
+               counter3++;
             }
         }
-        //print line break
-        System.out.print("\n");
 
     }//end main method
     
