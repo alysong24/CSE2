@@ -7,7 +7,10 @@ public class SmileGenerator {
     
     public static void main(String[] args) {
 
-        /* //print 5 smileys using a for loop
+        //print out Step 1
+        System.out.println("Step 1");
+        
+        //print 5 smileys using a for loop
         for(int counter = 5; counter > 0; counter--) {
             //print smiley
             System.out.print(":) ");
@@ -40,6 +43,8 @@ public class SmileGenerator {
         //create limiting variable
         int counter2 = 30;
         
+        //print Step 2 and 3
+        System.out.println("Step 2 and 3");
         //generate random number of smileys
         for(int number = (int)(Math.random() * 100); number > 0; number--) {
             //print smiley
@@ -57,34 +62,29 @@ public class SmileGenerator {
             }
         }
         //print line
-        System.out.print("\n \n"); */
+        System.out.print("\n \n");
         
-        /*int number2  = (int) (Math.random() * 30);
-        int counter3 = 1;
-        do {
-            System.out.print(":) " + counter3);
-            counter3++;
-            if (counter3 == number2) {
-                counter3 = 0;
-                number2--;
-                System.out.print("\n");
-            }
-        } while (counter3 < number2); */
-        
+        //Print Step 4
+        System.out.println("Step 4");
+        //generate random number between 0 and 30
         int number2  = (int) (Math.random() * 30);
+        //initialize counter variable
         int counter3 = 1;
-        int counter4 = 0;
-        do {
-            System.out.print(":) ");
-            counter3--;
-            if (counter3 == 0) {
-                System.out.print("\n");
-                counter3 = counter4;
-                counter4++;
-            }
-        } while(counter3 <= number2);
         
-    
+        for(int i = 1; i <= number2; i++) {
+            for(int j = 1; j <= i; j++ ) {
+                //print smiley
+                System.out.print(":) ");
+                //check if j equals 1
+                if (j == i) {
+                    //print line break
+                    System.out.print("\n");
+                }
+            }
+        }
+        //print line break
+        System.out.print("\n");
+
     }//end main method
     
 } //end class
