@@ -15,7 +15,7 @@ public class RunFactorial {
         Scanner scan = new Scanner(System.in);
         
         //initialize factorial
-        int factorial = 1;
+        long factorial = 1;
         
         //ask user to enter an integer between 9 and 16
         System.out.println("Please enter a number that is between 9 and 16: ");
