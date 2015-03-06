@@ -91,6 +91,8 @@ public class zigzag{
                 String answer = scan.next();
             //check if answer was yes
             if (answer.equals(yes1) | answer.equals(yes2)) {
+                //reset counter
+                counter = 1;
                 //print line break
                 System.out.println();
                 //break out of iteration of the loop
