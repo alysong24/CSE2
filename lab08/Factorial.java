@@ -1,7 +1,7 @@
 //Alyson Givre
 //Lab 8
 
-//This program finds the super factorial of a number inptted by the user
+//This program finds the super factorial of a number inputted by the user
 
 import java.util.Scanner; //import scanner
 
