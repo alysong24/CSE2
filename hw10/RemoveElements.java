@@ -72,6 +72,15 @@ public class RemoveElements {
     
     //delete method
     public static int[] delete(int[] list, int pos) {
+        //check if pos is valid
+        if(pos > (list.length - 1) | pos < 0) {
+            //print statement
+            System.out.println("The index is not valid.");
+            //return statement
+            return list;
+        }
+        //print statement
+        System.out.println("Index " + pos + " element is removed.");
         //find array size
         int size = list.length;
         //create array
@@ -108,6 +117,15 @@ public class RemoveElements {
                 counter++;
             }
         }
+        //check if target was found
+        if(counter == 0) {
+            //print statement
+            System.out.println("Element " + target + " was not found.");
+            //return statement
+            return list;
+        }
+        //print statement
+        System.out.println("Element " + target + " was found.");
         //create new array
         int[] array = new int[size - counter];
         //create second counter variable
