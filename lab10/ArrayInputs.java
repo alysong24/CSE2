@@ -26,7 +26,7 @@ public class ArrayInputs {
         //allocate array
         inputs = new int [size];
         //ask user to fill array
-        System.out.print("Please enter a positive integer: ");
+        System.out.print("Please enter " + size + " positive integers: ");
         //scan for input
         scan.nextLine();
         while(counter < size) {
@@ -46,11 +46,7 @@ public class ArrayInputs {
             inputs[counter] = i;
             //increase counter
             counter++;
-            //if counter doesn't equal the size
-            if (counter != size) {
-                //tell user to enter another integer
-                System.out.print("Enter another positive integer: ");
-            }
+            
         }
         //print statement 
         System.out.println("The array is: ");
