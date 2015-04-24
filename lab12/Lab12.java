@@ -7,15 +7,49 @@
 public class Lab12 {
     //main method
     public static void main(String[] args) {
-        int[][] array = new int[3][3];
-        array = increasingMatrix(3, 3, false);
-        printMatrix(array, false);
+        //generate random widths and heights
+        int width1 = (int)(Math.random() * 5 + 1);
+        int width2 = (int)(Math.random() * 5 + 1);
+        int height1 = (int)(Math.random() * 5 + 1);
+        int height2 = (int)(Math.random() * 5 + 1);
+        
+        //create arrays
+        int[][] A = new int[height1][width1];
+        A = increasingMatrix(width1, height1, true);
+        int[][] B = new int[width1][height1];
+        B = increasingMatrix(height1, width1, false);
+        int[][] C = new int[height2][width2];
+        C = increasingMatrix(width2, height2, true);
+        
+        //print matrices
+        System.out.println("Matrix A: ");
+        printMatrix(A, true);
+        System.out.println("Matrix B: ");
+        printMatrix(B, false);
+        System.out.println("Matrix C: ");
+        printMatrix(C, true);
+        
+        
+        //translate and print Matrix B
+        System.out.println("Translate Matrix B to row major: ");
+        //create new array
+        int[][] newB  = new int[height1][width1];
+        newB = translate(B);
+        printMatrix(newB, true);
+        
+        //create new matrix
+        int[][] added = new int[height1][width1];
+        added = addMatrix(A, true, B, false);
+        //print matrix
+        System.out.println("Matrix A + Matrix B = ");
+        printMatrix(added, true);
     } //end main method
     
     //increasingMatrix method
-    public static int[][] increasingMatrix(int width, int height, boolean format) {
+    public static int[][] increasingMatrix(int width, int height, 
+    boolean format) {
         //create array
-        int[][] array = new int[width][height];
+        int[][] array = new int[height][width];
         //create counter variable
         int counter = 1;
         //if row matrix
@@ -32,18 +66,16 @@ public class Lab12 {
         }
         
         //reset counter value
-        counter = 0;
+        counter = 1;
         //if column matrix
         if(format == false) {
-           //assign values to matrix 
+           //assign values to matrix
            for(int k = 0; k < width; k++) {
-               //reset counter
-               counter = k + 1;
                for(int m = 0; m < height; m++) {
                    //assign value
                    array[m][k] = counter;
                    //increase counter
-                   counter+=width;
+                   counter++;
                }
            }
         }
@@ -72,12 +104,12 @@ public class Lab12 {
         //if column matrix
         else if(format == false) {
             //print matrix
-            for(int k = 0; k < array.length; k++) {
+            for(int k = 0; k < array[0].length; k++) {
                 //print
                 System.out.print("[ ");
-                for(int m = 0; m < array[k].length; m++) {
+                for(int m = 0; m < array.length; m++) {
                     //print value
-                    System.out.print(array[k][m] + " "); 
+                    System.out.print(array[m][k] + " "); 
                 }
                 //print
                 System.out.print("]\n");
@@ -96,12 +128,62 @@ public class Lab12 {
     
     //translate method
     public static int[][] translate(int[][] array) {
-        int[][] newArray = new int[array.length][];
+        int[][] newArray = new int[array[0].length][array.length];
+        
+        //create temp value
+        int temp;
+        
+        //create array
+        for(int i = 0; i < array.length; i++) {
+            for(int j = 0; j < array[0].length; j++) {
+                //find value
+                temp = array[i][j];
+                newArray[j][i] = temp;
+            }
+        }
+        //return statement
+        return newArray;
     } //end translate method
     
+    //addMatrix method
+    public static int[][] addMatrix(int[][] A, boolean formatA, int[][] B, 
+    boolean formatB) {
+        //if A is column major
+        if(formatA == false) {
+            //create new array
+            int[][] newA = new int[A[0].length][A.length];
+            //translate A
+            newA = translate(A);
+            //call addMatrix method again
+            return addMatrix(newA, true, B, formatB);
+        }
+        //if B is column major
+        if(formatB == false) {
+            //create new array
+            int[][] newB = new int[B[0].length][B.length];
+            //translate A
+            newB = translate(B);
+            //call addMatrix method again
+            return addMatrix(A, formatA, newB, true);
+        }
+        //check if matrices can be added
+        if(A.length != B.length | A[0].length != B[0].length) {
+            //print statement
+            System.out.println("The matrices cannot be added!");
+            //return statement
+            return null;
+        }
+        //create new array
+        int[][] added = new int[A.length][A[0].length];
+        //add arrays
+        for(int i = 0; i < A.length; i++) {
+            for(int j = 0; j < A[0].length; j++) {
+                //add numbers
+                added[i][j] = A[i][j] + B[i][j];
+            }
+        }
+        //return statement
+        return added;
+    } //end addMatrix method
+ 
 } //end class
-
-/* System.out.println(array[0][0] + " " + array[0][1] + " " + array[0][2] + " " + array[0][3]);
-        System.out.println(array[1][0] + " " + array[1][1] + " " + array[1][2] + " " + array[1][3]);
-        System.out.println(array[2][0] + " " + array[2][1] + " " + array[2][2] + " " + array[2][3]);
-        System.out.println(array[3][0] + " " + array[3][1] + " " + array[3][2] + " " + array[3][3]); */
