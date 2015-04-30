@@ -7,6 +7,7 @@ of random doubles between 0 and 30  */
 import java.util.Scanner; //import scanner
 
 public class FourDwin{
+    
     //main method
     public static void main(String[] args) {
         //declare and construct scanner
@@ -79,16 +80,10 @@ public class FourDwin{
         //print sorted array
         System.out.println("Sorted array: ");
         A = sort4DArray(A);
-        A = sort3DArray(A);
         printArray(A);
         
         //print array statistics
         statArray(A);
-        
-        
-        
-        
-        
     } //end main method
     
     //isValid method
@@ -150,11 +145,27 @@ public class FourDwin{
                             System.out.print(", ");
                         }
                     }
+                    if(k == A[i][j].length - 1) {
+                        System.out.print("} ");
+                    }
+                    else {
+                        System.out.print("} , ");
+                    }
+                    
+                }
+                if(j == A[i].length - 1) {
                     System.out.print("} ");
                 }
+                else {
+                    System.out.print("} , ");
+                }
+            }
+            if(i == A.length - 1) {
                 System.out.print("} ");
             }
-            System.out.print("} ");
+            else {
+                System.out.print("} , ");
+            }
         }
         System.out.print("} \n");
     } //printArray method
@@ -189,25 +200,28 @@ public class FourDwin{
         System.out.print("\n");
     } //end statArray method
     
-    
     //sort4DArray method
     public static double[][][][] sort4DArray(double[][][][] A) {
+        //create temp arrays
         double[][][] temp;
         double[][][] target;
+        
+        //create counter variable
+        int counter = 0;
         
         for(int i = 0; i < A.length; i++) {
             temp = A[i];
             int j = i - 1;
             while(j >= 0) {
-                //if length of A[i] is less than length of A[j]
-                if(A[i].length < A[j].length) {
+                //if number of doubles in A[i] < number in A[j]
+                if(findDoubles(A[i]) < findDoubles(A[j])) {
                     //switch values
                     target = A[j];
                     A[j] = temp;
                     A[i] = target;
                 }
                 //if lengths are equal
-                if(A[i].length == A[j].length) {
+                if(findDoubles(A[i]) == findDoubles(A[j])) {
                     //if min value of A[i] is greater
                     if(findMin(A[i]) > findMin(A[j])) {
                         //decrease j
@@ -227,9 +241,32 @@ public class FourDwin{
                 j--;
             }
         }
+        
+        //call sort3DArray method for each 3D member array
+        for(int k = 0; k < A.length; k++) {
+            A[k] = sort3DArray(A[k]);
+        }
+        
         //return statement
         return A;
     }//end sort4DArray method
+    
+    //findDoubles method
+    public static int findDoubles(double[][][] A) {
+        //create counter variable
+        int counter = 0;
+        //loop to find number of doubles
+        for(int i = 0; i < A.length; i++) {
+            for(int j = 0; j < A[i].length; j++) {
+                for(int k = 0; k < A[i][j].length; k++) {
+                    //increase counter
+                    counter++;
+                }
+            }
+        }
+        //return statement
+        return counter;
+    } //end findDoubles method
     
     //findMin method
     public static double findMin(double[][][] A) {
@@ -252,39 +289,40 @@ public class FourDwin{
     } //end findMin method
     
     //sort3DArray method
-    public static double[][][][] sort3DArray(double[][][][] A) {
-        //sort innermost loop
-        for(int x = 0; x < A.length; x++) {
-            for(int y = 0; y < A[x].length; y++) {
-                for(int z = 0; z < A[x][y].length; z++) {
-                    java.util.Arrays.sort(A[x][y][z]);
-                }
-            }
-        }
-        
-        
+    public static double[][][] sort3DArray(double[][][] A) {
         //create min value
-        int min = A[0][0].length;
-        //create swap values
-        double[][] temp;
-        double[][] target;
+        double min = A[0][0][0];
+        //create temp values
+        double temp;
+        double target;
         //create counter variable
         int counter = 0;
         
-        //selection sort
-        for(int i = 0; i < A.length; i++) {
-            for(int j = 0; j < A[i].length; j++) {
-                //if array length is less than min
-                if(A[i][j].length < min) {
-                    temp = A[i][j];
-                    target = A[i][counter];
-                    //swap values
-                    A[i][j] = target;
-                    A[i][counter] = temp;
+        //while counter is less than length of array
+        while(counter < A.length) {
+            //find min value
+            for(int i = 0; i < A.length; i++) {
+                for(int j = 0; j < A[i].length; j++) {
+                    //set min
+                    min = A[i][j][0];
+                    for(int k = 0; k < A[i][j].length; k++) {
+                        //check if value is less than other members of array
+                        if(A[i][j][k] < min) {
+                            //switch values
+                            temp = A[i][j][k];
+                            target = A[i][j][counter];
+                            A[i][j][k] = target;
+                            A[i][j][counter] = temp;
+                            //increase counter
+                            counter++;
+                        } 
+                    }
                 }
+                //reset counter
+                counter = 0;
             }
-            //reset counter
-            counter = 0;
+            //set counter to end loop
+            counter = A.length;
         }
         //return statement
         return A;
@@ -292,6 +330,4 @@ public class FourDwin{
     
     
 } //end class
-
-
         
