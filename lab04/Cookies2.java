@@ -6,7 +6,7 @@ enough cookies */
 
 import java.util.Scanner; //import scanner
 
-public class Cookies {
+public class Cookies2 {
     //main method
     public static void main(String[] args) {
         //declare and construct scanner
@@ -14,7 +14,7 @@ public class Cookies {
         
         //tell user to enter the number of people
         System.out.print("Enter the number of people: ");
-        boolean people = scan.hasNextInt();
+        boolean people = scan.hasnextInt();
         //if input is invalid
         if(people == false) {
             //tell user input was invalid
@@ -32,8 +32,8 @@ public class Cookies {
         }
         
         //tell user to enter number of cookies
-        System.out.print("Enter the number of cookies you are planning to buy: ");
-        boolean cookies = scan.hasNextInt();
+        System.out.println("Enter the number of cookies you are planning to buy: ");
+        boolean cookies = scan.hasnextInt();
         //if input is invalid
         if(cookies == false) {
             //tell user input was invalid
@@ -51,8 +51,8 @@ public class Cookies {
         }
         
         //tell user to enter number each
-        System.out.print("How many do you want each person to get? ");
-        boolean each = scan.hasNextInt();
+        System.out.println("How many do you want each person to get? ");
+        boolean each = scan.hasnextInt();
         //if input is invalid
         if(each == false) {
             //tell user input was invalid
@@ -70,23 +70,22 @@ public class Cookies {
         }
         
         //divide evenly case
-        if( (nPeople * nEach) / nCookies == 1 | nEach == 0 | 
-            nCookies % (nPeople * nEach) == nPeople) {
+        if( (nPeople * nEach) == nCookies | nEach == 0) {
             //print statement
             System.out.println("You will have enough cookies for each person" +
                 " and the amount will divide evenly.");
         }
         
         //not enough case
-        if( (nPeople * nEach) > nCookies) {
-            int nMore = (nPeople * nEach) - nCookies;
+        if( (nPeople * nEach) < nCookies) {
+            int nMore = nCookies - (nPeople * nEach);
             //print statement
             System.out.println("You will not have enough cookies. You will" +
             " need to buy at least " + nMore + " more.");
         }
         
         //divide unevenly case
-        if( (nPeople * nEach) < nCookies & nCookies % (nPeople * nEach) != nPeople) {
+        if( (nPeople * nEach) > nCookies & (nPeople * nEach) % nCookies != 0) {
             //print statement
             System.out.println("You have enough, but they will not divide evenly.");
         }

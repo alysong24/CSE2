@@ -1,5 +1,14 @@
+import java.util.Scanner;
+
 public class test {
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Enter an integer: ");
+        if(scan.hasnextInt() ) {
+            int a = scan.nextInt();
+        }
+        System.out.println(a);
+        
         double[][] array = new double[5][5];
         array = createMatrix(array);
         System.out.println("Array 1");
